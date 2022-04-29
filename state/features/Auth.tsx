@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import { useAppSelector } from '../state/app/hooks';
+import { useAppSelector } from '../app/hooks';
 
 export function Auth({ children }: React.PropsWithChildren<unknown>) {
   const code = localStorage.getItem('code');
