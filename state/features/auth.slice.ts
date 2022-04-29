@@ -1,20 +1,21 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+type PayloadType = {
+  access_token: string;
+};
 
-const authAPISlice = createApi({
+const authAPI = createApi({
   reducerPath: 'auth',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://github.com/login/oauth' }),
+  baseQuery: fetchBaseQuery({ baseUrl: '' }),
   endpoints(builder) {
     return {
-      signIn: builder.query({
-        query: () =>
-          `/authorize?client_id=${CLIENT_ID}&redirect_uri=${BASE_URL}/login&scope="user repo"`,
+      signIn: builder.query<PayloadType, string>({
+        query: code => `/api/auth?code=${code}`,
+        keepUnusedDataFor: 7200,
       }),
     };
   },
 });
 
-export const { useLazySignInQuery } = authAPISlice;
-export default authAPISlice;
+export const { useLazySignInQuery, useSignInQuery } = authAPI;
+export default authAPI;
