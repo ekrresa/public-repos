@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import { useAppSelector } from '../app/hooks';
+import { useAppSelector } from '../state/app/hooks';
 
 export function Auth({ children }: React.PropsWithChildren<unknown>) {
-  const code = localStorage.getItem('code');
   const router = useRouter();
-  const state = useAppSelector(state => state.auth.queries[`signIn("${code}")`]);
+  const access_token = useAppSelector(state => state.auth.access_token);
 
-  if (!state?.data || state?.error || !code) {
+  if (!access_token) {
     router.replace('/login');
     return null;
   }

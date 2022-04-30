@@ -1,15 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-type PayloadType = {
-  access_token: string;
-};
+export interface AuthResponse {
+  error?: string;
+  error_description?: string;
+  error_uri?: string;
+  access_token?: string;
+}
 
 const authAPI = createApi({
-  reducerPath: 'auth',
+  reducerPath: 'authAPI',
   baseQuery: fetchBaseQuery({ baseUrl: '' }),
   endpoints(builder) {
     return {
-      signIn: builder.query<PayloadType, string>({
+      signIn: builder.query<AuthResponse, string>({
         query: code => `/api/auth?code=${code}`,
         keepUnusedDataFor: 7200,
       }),

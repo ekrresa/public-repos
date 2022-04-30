@@ -1,13 +1,17 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useLazySignInQuery } from '../state/features/auth.slice';
+
+import { useLazySignInQuery } from '../state/features/api/auth.slice';
+import { useAppDispatch } from '../state/app/hooks';
+import { updateAccessToken } from '../state/features/auth/slice';
 
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
 const state = 'dontbeevil';
 
 export default function Login() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [trigger, { data, error }] = useLazySignInQuery({
     refetchOnReconnect: false,
     refetchOnFocus: false,
@@ -24,8 +28,9 @@ export default function Login() {
   }, [router.query.code, router.query.error, router.query.state, trigger]);
 
   if (data?.access_token) {
-    localStorage.setItem('code', router.query.code as string);
+    dispatch(updateAccessToken(data?.access_token));
     router.replace('/');
+    return;
   }
 
   if (error) {

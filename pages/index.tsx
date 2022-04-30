@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Auth } from '../state/features/Auth';
+import { Auth } from '../components/Auth';
 
 export default function Home() {
   return (
