@@ -12,6 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import authReducer from '../features/auth/slice';
 import authAPI from '../features/api/auth.slice';
+import githubAPI from '../features/api/github.slice';
 
 const persistConfig = {
   key: 'root',
@@ -22,6 +23,7 @@ const persistConfig = {
 const reducers = combineReducers({
   auth: authReducer,
   [authAPI.reducerPath]: authAPI.reducer,
+  [githubAPI.reducerPath]: githubAPI.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
