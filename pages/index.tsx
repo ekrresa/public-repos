@@ -9,11 +9,14 @@ import Book from '../public/book.svg';
 import Caret from '../public/down-caret.svg';
 import Code from '../public/code.svg';
 import Diary from '../public/diary.svg';
+
 import Project from '../public/project.svg';
 import Package from '../public/package.svg';
 import Star from '../public/star.svg';
+
 import { Header } from '../components/Header';
 import { Repository } from '../components/Repository';
+import UserProfile from '../components/UserProfile';
 
 export default function Home() {
   // const access_token = useAppSelector(state => state.auth.access_token);
@@ -30,7 +33,7 @@ export default function Home() {
       <Header />
 
       <div className="mt-6 border-b pt-4 bg-white sticky top-0">
-        <div className="grid grid-cols-main max-w-[1280px] mx-auto px-4">
+        <div className="grid grid-cols-main gap-8 max-w-[1280px] mx-auto px-4">
           <aside className=""></aside>
           <div className="flex items-center gap-1">
             <div className="flex gap-2 px-2 pb-2 border-b-2 border-transparent">
@@ -63,8 +66,9 @@ export default function Home() {
       </div>
 
       <main className="mt-4">
-        <div className="max-w-[1280px] mx-auto grid grid-cols-main">
-          <aside></aside>
+        <div className="max-w-[1280px] mx-auto grid grid-cols-main gap-8">
+          <UserProfile />
+
           <div>
             <div className="flex gap-6 border-b pb-4">
               <form className="flex-1 overflow-hidden">
