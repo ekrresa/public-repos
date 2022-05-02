@@ -14,7 +14,7 @@ module.exports = {
         marker: '#1b1f2426',
       },
       gridTemplateColumns: {
-        main: '32% 1fr',
+        main: '24% 1fr',
       },
       screens: {
         md: '868px',
